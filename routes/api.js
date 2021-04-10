@@ -1,8 +1,10 @@
 const tableData = require("../data/tableData");
+const waitingList = require("../data/waitingList");
 
 module.exports = (app) => {
 
     app.get('/api/tables', (req, res) => res.json(tableData));
+    app.get('/api/reserve', (req, res) => res.json(waitingList));
 
     app.post('/api/tableData', (req, res) => {
         // req.body hosts is equal to the JSON post sent from the user
