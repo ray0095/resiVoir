@@ -16,9 +16,17 @@ module.exports = (app) => {
         console.log(newReservation);
     
         // //pushing newReservation data to the array
-        tableData.push(newReservation);
+        if (tableData.length < 5){
+          tableData.push(newReservation);
+          console.log("Your reservation is confirmed")
+          console.log(tableData)
+        } else {
+          waitingList.push(newReservation)
+          console.log("Sorry, you've been added to the waitlist")
+          console.log(waitingList)
+        }
         res.json(newReservation);
-        console.log(tableData)
+        
       });
 
 } 

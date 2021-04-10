@@ -29,5 +29,53 @@
           <a href="">API Table Link</a>
           <a href="">API Wait List</a>
       </footer>
+
+      <script type = "text/javascript">
+      let currentRes = querySelector(".currentRes");
+      let waitList = querySelector(".waitList");
+
+      function init() {
+        fetch('/api/tableData', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newReservation),
+          })
+            .then((data) => {
+              currentRes.innerHTML = 
+              `Reservation name: ${data.name}
+              ID: ${data.ID}
+              Email: ${data.email}
+              Phone Number: ${data.phone}
+              `;
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+       
+
+        // fetch('/api/waitingList', {
+        //     method: 'GET',
+        //     headers: {
+        //       'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify(newReservation),
+        //   })
+        //     .then((response) => response.json())
+        //     .then((data) => {
+        //       alert(`Adding reservation for ${data.name}`);
+        //     })
+        //     .catch((error) => {
+        //       console.error('Error:', error);
+        //     });
+        
+      }
+
+      init();
+
+        
+      
+      </script> 
 </body>
 </html>
