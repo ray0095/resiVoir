@@ -10,14 +10,15 @@ module.exports = (app) => {
         // req.body hosts is equal to the JSON post sent from the user
         // This works because of our body parsing middleware
         const newReservation = req.body;
+        console.log(req.body);
       
         // Using a RegEx Pattern to remove spaces from newReservation
-        newReservation.routeName = newReservation.name.replace(/\s+/g, '').toLowerCase();
-        console.log(newReservation);
+        // newReservation.routeName = newReservation.name.replace(/\s+/g, '').toLowerCase();
+        // console.log(newReservation);
     
-        //pushing newReservation data to the array
-        tableData.push(newReservation);
-        res.json(newReservation);
+        // //pushing newReservation data to the array
+        // tableData.push(newReservation);
+        // res.json(newReservation);
       });
 
 } 

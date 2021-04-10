@@ -34,7 +34,7 @@
               <label for="uniqueID" class="form-label">Unique ID</label>
               <input type="uniqueID" class="form-control" id="uniqueID">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" id="add-btn">Submit</button>
           </form>
       </div>
 
@@ -42,5 +42,42 @@
           <a href="">API Table Link</a>
           <a href="">API Wait List</a>
       </footer>
+
+      <script type = "text/javascript">
+        const addBtn = document.getElementById('add-btn'); //grabs the submit button
+      
+        // Question: What is "e" short for?
+        addBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          
+          // Question: What does this code do?
+          let resName = document.getElementById('name').value.trim();
+          let resNum = document.getElementById('phoneNumber').value.trim();
+          let resEmail = document.getElementById('email').value.trim();
+          let resID = document.getElementById('uniqueID').value.trim();
+          
+          let newReservation = {
+            ID: resID,
+            name: resName,
+            email: resEmail,
+            phone: resNum
+          };
+
+        fetch('/api/reserve', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newReservation),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              alert(`Adding reservation for ${data.name}`);
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        });
+      </script>
 </body>
 </html>
